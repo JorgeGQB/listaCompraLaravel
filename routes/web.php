@@ -12,31 +12,27 @@
 */
 
 Route::get('/', function () {
-    return "Pantalla principal";
+    return view('home');
 });
 
 Route::get('/login', function () {
-    return "Login Usuario";
-});
-
-Route::get('/logout', function () {
-    return "Logout Usuario";
+    return view('auth.login');
 });
 
 Route::get('/productos', function () {
-    return "Listado productos";
+    return view('productos.index');
 });
 
 Route::get('/productos/show/{id}', function ($id) {
-    return "Vista detalle producto " . $id;
+    return view('productos.show') . $id;
 })
 ->where('id', '[0-9]+');
 
 Route::get('/productos/create', function () {
-    return "Añadir producto";
+    return view('productos.create');
 });
 
 Route::get('/productos/edit/{id}', function ($id) {
-    return "Editar producto " . $id;
+    return view('productos.edit') . $id;
 })
 ->where('id', '[0-9]+');
