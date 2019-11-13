@@ -24,7 +24,7 @@ Route::get('/productos', function () {
 });
 
 Route::get('/productos/show/{id}', function ($id) {
-    return view('productos.show') . $id;
+    return view('productos.show', array('id'=>$id));
 })
 ->where('id', '[0-9]+');
 
@@ -33,6 +33,6 @@ Route::get('/productos/create', function () {
 });
 
 Route::get('/productos/edit/{id}', function ($id) {
-    return view('productos.edit') . $id;
+    return view('productos.edit', array('id'=>$id));
 })
 ->where('id', '[0-9]+');
