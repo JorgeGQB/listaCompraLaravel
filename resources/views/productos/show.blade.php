@@ -11,14 +11,13 @@
     </div>
     <div class="col-sm-8">
 
-        <h2>{{$id[0]}}</h2>
-        <p><b>Categoría:</b> {{$id[1]}}</p>
+        <h2>{{$producto->nombre}}</h2>
+        <p><b>Categoría:</b> {{$producto->categoria}}</p>
         <p><b>Estado: </b>Producto actualmente comprado</p>
         <br>
         <button type="button" class="btn btn-danger">Pendiente de compra</button>
-        <button class="btn btn-warning">Editar producto</button>
-        <button class="btn btn-default">Volver al índice</button>
-
+        <a class="btn btn-warning" href="{{action('ProductoController@getEdit', $producto->id)}}">Editar producto</a>
+        <a class="btn btn-outline-info" href="{{action('ProductoController@getIndex')}}">Volver al índice</a>
     </div>
 </div>
 

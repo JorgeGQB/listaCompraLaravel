@@ -6,7 +6,7 @@
     <div class="offset-md-3 col-md-6">
         <div class="card">
             <div class="card-header text-center">
-            Añadir producto
+            Modificar producto
             </div>
         <div class="card-body" style="padding:30px">
 
@@ -16,7 +16,7 @@
 
             <div class="form-group">
                 <label for="name">Nombre</label>
-                <input type="text" name="name" id="name" class="form-control" value="{{$id[0]}}">
+                <input type="text" name="name" id="name" class="form-control" value="{{$producto->nombre}}">
             </div>
 
             <div class="form-group">
@@ -26,7 +26,7 @@
 
             <div class="form-group">
                 <label for="category">Categoría</label>
-                <input type="text" name="category" id="category" class="form-control" value="{{$id[1]}}">
+                <input type="text" name="category" id="category" class="form-control" value="{{$producto->categoria}}">
             </div>
 
             <div class="form-group">
