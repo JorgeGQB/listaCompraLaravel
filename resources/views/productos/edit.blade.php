@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('content')
 
@@ -10,9 +10,11 @@
             </div>
         <div class="card-body" style="padding:30px">
 
-            <form action="#" method="POST">
+            <form action="{{action('ProductoController@putEdit')}}" method="POST">
                 {{method_field('PUT')}}
             @csrf
+
+            <input type="hidden" name="id" value="{{$producto->id}}">
 
             <div class="form-group">
                 <label for="name">Nombre</label>
@@ -21,7 +23,7 @@
 
             <div class="form-group">
                 <label for="price">Precio</label>
-                <input type="number" name="price" id="price" class="form-control">
+            <input type="number" name="price" id="price" class="form-control" value="{{$producto->precio}}">
             </div>
 
             <div class="form-group">
@@ -31,17 +33,17 @@
 
             <div class="form-group">
                 <label for="image">Imagen</label>
-                <input type="text" name="image" id="image" class="form-control">
+            <input type="text" name="image" id="image" class="form-control" value="{{$producto->imagen}}">
             </div>
 
             <div class="form-group">
                 <label for="description">Descripción</label>
-                <input type="textarea" name="description" id="description" class="form-control">
+                <input type="textarea" name="description" id="description" class="form-control">{{$producto->descripcion}}
             </div>
 
             <div class="form-group text-center">
                 <button type="submit" class="btn btn-primary" style="padding:8px 100px;margin-top:25px;">
-                    Añadir producto
+                    Modificar producto
                 </button>
             </div>
 
