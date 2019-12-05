@@ -8,8 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
-    public function getIndex(){
-        $productos = Producto::all();
+    public function getIndex($categoria = null){
+        if ($categoria) {
+            $productos = Producto::where('categoria', '=', $categoria)->get();
+        } else {
+            $productos = Producto::all();
+        }
         return view('productos.index', array('productos'=>$productos));
     }
 
