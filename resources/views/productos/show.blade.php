@@ -13,9 +13,23 @@
 
         <h2>{{$producto->nombre}}</h2>
         <p><b>Categoría:</b> {{$producto->categoria}}</p>
-        <p><b>Estado: </b>Producto actualmente comprado</p>
+        <p><b>Estado: </b>
+            @if($producto->pendiente)
+                Producto actualmente fuera de stock
+            @else
+                Producto en stock para comprar
+            @endif
+        </p>
         <br>
-        <button type="button" class="btn btn-danger">Pendiente de compra</button>
+        <form action="{{ action('ProductoController@putComprar', ['id' => $producto->id]) }}" method="POST">
+        {{method_field('PUT')}}
+        @csrf
+        <input type="hidden" name="id" value="{{ $producto->id }}">
+        @if($producto->pendiente)
+        <button type="sumbit" class="btn btn-danger">Pendiente de reposición</button>
+        @else
+        <button type="sumbit" class="btn btn-primary">Comprar</button>
+        @endif
         <a class="btn btn-warning" href="{{action('ProductoController@getEdit', $producto->id)}}">Editar producto</a>
         <a class="btn btn-outline-info" href="{{action('ProductoController@getIndex')}}">Volver al índice</a>
     </div>

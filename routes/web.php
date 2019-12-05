@@ -23,13 +23,15 @@ Route::get('/logout', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/productos', 'ProductoController@getIndex');
-    Route::get('/productos/show/{id}', 'ProductoController@getShow');
+    Route::get('/productos/show/{id}', 'ProductoController@getShow')->where('id', '[0-9]+');
 
     Route::get('/productos/create', 'ProductoController@getCreate');
     Route::post('/productos/create', 'ProductoController@postCreate');
 
-    Route::get('/productos/edit/{id}', 'ProductoController@getEdit');
+    Route::get('/productos/edit/{id}', 'ProductoController@getEdit')->where('id', '[0-9]+');
     Route::put('productos/edit', 'ProductoController@putEdit');
+
+    Route::put('/productos/comprar/{id}', 'ProductoController@putComprar')->where('id', '[0-9]+');
 });
 
 Auth::routes();
