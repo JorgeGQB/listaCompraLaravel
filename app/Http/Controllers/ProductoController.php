@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Producto;
+use Illuminate\Support\Facades\Storage;
 
 class ProductoController extends Controller
 {
@@ -29,7 +30,9 @@ class ProductoController extends Controller
         $producto->nombre = $request->name;
         $producto->precio = $request->price;
         $producto->categoria = $request->category;
-        $producto->imagen = $request->image;
+        if($request->exists('image')) {
+            $producto->imagen = Storage::disk('public')->putFile('images', $request->file('image'));
+        }
         $producto->descripcion = $request->description;
         $producto->save();
         return redirect(action('ProductoController@getIndex'));
@@ -48,7 +51,9 @@ class ProductoController extends Controller
         $producto->nombre = $request->name;
         $producto->precio = $request->price;
         $producto->categoria = $request->category;
-        $producto->imagen = $request->image;
+        if($request->exists('image')) {
+            $producto->imagen = Storage::disk('public')->putFile('images', $request->file('image'));
+        }
         $producto->descripcion = $request->description;
         $producto->save();
         return redirect()->action('ProductoController@getShow', [$request->id]);

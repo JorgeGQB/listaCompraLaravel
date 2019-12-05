@@ -10,7 +10,7 @@
             </div>
         <div class="card-body" style="padding:30px">
 
-            <form action="{{action('ProductoController@postCreate')}}" method="POST">
+            <form action="{{action('ProductoController@postCreate')}}" method="POST" enctype="multipart/form-data">
 
             @csrf
 
@@ -31,7 +31,7 @@
 
             <div class="form-group">
                 <label for="image">Imagen</label>
-                <input type="text" name="image" id="image" class="form-control">
+                <input type="file" id="image" name="image" class="form-control">
             </div>
 
             <div class="form-group">
