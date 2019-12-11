@@ -23,6 +23,7 @@ Route::get('/logout', function () {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/productos/{categoria?}', 'ProductoController@getIndex')->where('categoria', '[a-zA-Z ]+');
+    
     Route::get('/productos/show/{id}', 'ProductoController@getShow')->where('id', '[0-9]+');
 
     Route::get('/productos/create', 'ProductoController@getCreate');

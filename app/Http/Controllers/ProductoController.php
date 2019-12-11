@@ -9,12 +9,19 @@ use Illuminate\Support\Facades\Storage;
 class ProductoController extends Controller
 {
     public function getIndex($categoria = null){
-        if ($categoria) {
-            $productos = Producto::where('categoria', '=', $categoria)->get();
+        if (isset($categoria)) {
+            if ($categoria == 'categorias') {
+                $productos = Producto::select('categoria')->distinct('categoria')->get();
+                $devuelve = view('productos.categorias', array('productos' => $productos));
+            } else {
+                $productos = Producto::where('categoria', $categoria)->get();
+                $devuelve = view('productos.index', array('productos'=>$productos));
+            }
         } else {
             $productos = Producto::all();
+            $devuelve = view('productos.index', array('productos'=>$productos));
         }
-        return view('productos.index', array('productos'=>$productos));
+        return $devuelve;
     }
 
     public function getShow($id){
