@@ -21,17 +21,25 @@
             @endif
         </p>
         <br>
-        <form action="{{ action('ProductoController@putComprar', ['id' => $producto->id]) }}" method="POST">
-        {{method_field('PUT')}}
-        @csrf
-        <input type="hidden" name="id" value="{{ $producto->id }}">
-        @if($producto->pendiente)
-        <button type="sumbit" class="btn btn-danger">Pendiente de reposición</button>
-        @else
-        <button type="sumbit" class="btn btn-primary">Comprar</button>
-        @endif
-        <a class="btn btn-warning" href="{{action('ProductoController@getEdit', $producto->id)}}">Editar producto</a>
-        <a class="btn btn-outline-info" href="{{action('ProductoController@getIndex')}}">Volver al índice</a>
+        <form action="{{ action('ProductoController2@putComprar', array('producto' => $producto)) }}" method="POST">
+            {{method_field('PUT')}}
+            @csrf
+            <input type="hidden" name="id" value="{{ $producto->id }}">
+            @if($producto->pendiente)
+            <button type="sumbit" class="btn btn-danger">Pendiente de reposición</button>
+            @else
+            <button type="sumbit" class="btn btn-primary">Comprar</button>
+            @endif
+        </form>
+
+        <a class="btn btn-warning" href="{{action('ProductoController2@edit', array('producto' => $producto))}}">Editar producto</a>
+        <a class="btn btn-outline-info" href="{{action('ProductoController2@index')}}">Volver al índice</a>
+
+        <form action="{{action('ProductoController2@destroy', array('producto' => $producto))}}">
+            {{method_field('DELETE')}}
+            @csrf
+            <button onclick="return confirm('¿Seguro que desea borrar el producto?')" type="sumbit" class="btn btn-danger">Borrar producto</button>
+        </form>
     </div>
 </div>
 
